@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AppSDKIssues (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AppSDKIssues (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
