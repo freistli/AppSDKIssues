@@ -14,6 +14,9 @@
             <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled">LightBlue</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionForeground">White</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionForegroundDisabled">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionButtonStrokePointerOver">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionButtonStrokePressed">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionButtonStroke">White</SolidColorBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
