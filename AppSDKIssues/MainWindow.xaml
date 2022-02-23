@@ -28,11 +28,7 @@
         <NavigationView Grid.Row="1"
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False">
-            <StackPanel>
-                <TextBlock Text="Content" 
-                           Style="{ThemeResource TitleTextBlockStyle}"
-                           Margin="32,0,0,0"/>
-            </StackPanel>
+            <local:FlyoutClose></local:FlyoutClose>
         </NavigationView>
     </Grid>
 </Window>

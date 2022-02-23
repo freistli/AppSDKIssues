@@ -17,6 +17,8 @@
             <SolidColorBrush x:Key="WindowCaptionButtonStrokePointerOver">White</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionButtonStrokePressed">White</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionButtonStroke">White</SolidColorBrush>
+            <!--SolidColorBrush x:Key="ButtonBackground">Red</SolidColorBrush>
+            <SolidColorBrush x:Key="ButtonForeground">Yellow</SolidColorBrush-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>
