@@ -21,11 +21,14 @@
             <SolidColorBrush x:Key="WindowCaptionButtonStrokePressed">White</SolidColorBrush>
             <SolidColorBrush x:Key="WindowCaptionButtonStroke">White</SolidColorBrush>
 
+            <SolidColorBrush x:Key="MyBrushDark">Yellow</SolidColorBrush>
+            <SolidColorBrush x:Key="MyBrushLight">Purple</SolidColorBrush>
+            <SolidColorBrush x:Key="MyBrushHighContrast">Blue</SolidColorBrush>
+
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Default">
-                    <!--AccentColor overrides - Shades of Blue-->
-                    
-                        <Color x:Key="SystemAccentColorLight3">#FF90CAF9</Color>
+                <ResourceDictionary x:Key="Default01">
+                    <!--AccentColor overrides - Shades of Blue--> 
+                    <Color x:Key="SystemAccentColorLight3">#FF90CAF9</Color>
                     <Color x:Key="SystemAccentColorLight2">Yellow</Color>
                         <Color x:Key="SystemAccentColorLight1">#FF42A5F5</Color>
                         <Color x:Key="SystemAccentColor">#FF2196F3</Color>
@@ -47,11 +50,7 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                </ResourceDictionary>
-                <ResourceDictionary x:Key="HighContrast">
-                    <StaticResource x:Key="RegionColor" ResourceKey="SystemColorWindowColor" />
-                    <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
-                </ResourceDictionary>
+                </ResourceDictionary> 
             </ResourceDictionary.ThemeDictionaries>
 
         </ResourceDictionary>

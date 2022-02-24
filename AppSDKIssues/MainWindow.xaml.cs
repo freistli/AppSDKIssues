@@ -37,10 +37,8 @@ namespace AppSDKIssues
 
             ExtendsContentIntoTitleBar = true;
 
-            //SetTitleBar(AppTitleBar);
+            SetTitleBar(AppTitleBar);
           
-            //myListView.ItemContainerStyle = (Style)App.Current.Resources["myListViewItemStyle"];
-            //myListView.ItemContainerStyle = (Style)App.Current.Resources["NewListViewItemStyle"];
            
         }
 

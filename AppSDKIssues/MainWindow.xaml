@@ -47,7 +47,23 @@
                         <ListViewItem>Four</ListViewItem>
                     </ListView.Items>
                 </ListView>
-                <Button x:Name="MyButton" HorizontalAlignment="Center">Submit</Button>
+                <Button x:Name="MyButton" HorizontalAlignment="Center">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Dark">
+                                    <StaticResource x:Key="ButtonBackground" ResourceKey="MyBrushDark"/>
+                                </ResourceDictionary>
+                                <ResourceDictionary x:Key="Light">
+                                    <StaticResource x:Key="ButtonBackground" ResourceKey="MyBrushLight"/>
+                                </ResourceDictionary>
+                                <ResourceDictionary x:Key="HighContrast">
+                                    <StaticResource x:Key="ButtonBackground" ResourceKey="MyBrushHighContrast"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                    Submit</Button>
             </StackPanel>
         </NavigationView>
     </Grid>

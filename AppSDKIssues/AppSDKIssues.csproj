@@ -11,9 +11,6 @@
     <UseWinUI>true</UseWinUI>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Resources\Styles.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -39,8 +36,6 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Resources\Styles.xaml">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Page>
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>
