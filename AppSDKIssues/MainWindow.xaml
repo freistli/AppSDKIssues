@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    
     mc:Ignorable="d">
 
     <Grid>
@@ -29,121 +30,25 @@
         <NavigationView Grid.Row="1"
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0"
-                   Text="GridSplitter Page"
-                   FontWeight="Bold"
-                   Margin="10,10,0,0"/>
-
-                <TextBlock Grid.Row="1"
-                   x:Name="issueTextBlock"
-                   Margin="10,10,0,0"
-                   IsTextSelectionEnabled="True"/>
-
-                <Grid Grid.Row="2" 
-              Margin="10,10,10,10">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="50*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid x:Name="grid1" 
-                  Grid.Column="0"
-                  BorderBrush="Black"
-                  BorderThickness="1,1,1,1">
-
-                        <TextBlock Text="Grid 1"
-                           Margin="10,10,0,0"/>
-
-                    </Grid>
-
-                    <Grid x:Name="grid2" 
-                  Grid.Column="1"
-                  BorderBrush="Black"
-                  BorderThickness="1,1,1,1">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50*"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid x:Name="grid2a" 
-                      Grid.Row="0"
-                      BorderBrush="Black"
-                      BorderThickness="0,0,0,1">
-
-                            <TextBlock Text="Grid 2A"
-                               Margin="10,10,0,0"/>
-
-                        </Grid>
-
-                        <Grid x:Name="grid2b" 
-                      Grid.Row="1">
-
-                            <TextBlock Text="Grid 2B"
-                               Margin="10,10,0,0"/>
-
-                        </Grid>
-
-                        <controls:GridSplitter x:Name="detailsGridSplitter"
-                                       Grid.Row="1"
-                                       Height="16"
-                                       Width="22"
-                                       Background="LightGray"
-                                       Opacity=".6"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Top"
-                                       ResizeDirection="Rows"
-                                       GripperCursor="Default"
-                                       CursorBehavior="ChangeOnGripperHover"
-                                       PointerEntered="detailsGridSplitter_PointerEntered"
-                                               >
-                            <controls:GridSplitter.RenderTransform>
-                                <TranslateTransform Y="-8" />
-                            </controls:GridSplitter.RenderTransform>
-                            <controls:GridSplitter.Element>
-                                <TextBlock HorizontalAlignment="Center"
-                                   IsHitTestVisible="True"
-                                   VerticalAlignment="Center"
-                                   Text="&#xE76F;"
-                                   Foreground="White"
-                                   FontFamily="Segoe MDL2 Assets">                                   
-                                </TextBlock>
-                            </controls:GridSplitter.Element>
-                        </controls:GridSplitter>
-
-
-                    </Grid>
-
-                    <controls:GridSplitter x:Name="slideOutGridSplitter"
-                                   Grid.Column="0"
-                                   Margin="0,0,0,1"
-                                   Height="22"
-                                   Width="16"
-                                   HorizontalAlignment="Right"
-                                   VerticalAlignment="Center"
-                                   GripperCursor="Default"
-                                   Background="LightGray"
-                                   Opacity=".6"
-                                   ResizeDirection="Auto"
-                                   ResizeBehavior="BasedOnAlignment"
-                                   CursorBehavior="ChangeOnSplitterHover"
-                                   PointerEntered="slideOutGridSplitter_PointerEntered">
-
-                        <controls:GridSplitter.RenderTransform>
-                            <TranslateTransform X="+8" />
-                        </controls:GridSplitter.RenderTransform>
-                    </controls:GridSplitter>
-
-                </Grid>
-            </Grid>
+            <StackPanel Orientation="Vertical">
+                <TextBox x:Name="MyInput"></TextBox>
+                <CheckBox x:Name="MyCheckOne">Check One</CheckBox>
+                <CheckBox x:Name="MyCheckTwo">Check Two</CheckBox>
+                <Slider x:Name="MySlider" Maximum="100"></Slider>
+                <TextBlock x:Name="MyResult" Text="{x:Bind MySlider.Value, Mode=TwoWay}"></TextBlock>
+                <RadioButton x:Name="MyRadioOne">Radio One</RadioButton>
+                <RadioButton x:Name="MyRadioTwo">Radio Two</RadioButton>
+                <ListView x:Name="myListView">
+                   
+                    <ListView.Items>
+                        <ListViewItem>One</ListViewItem>
+                        <ListViewItem>Two</ListViewItem>
+                        <ListViewItem>Three</ListViewItem>
+                        <ListViewItem>Four</ListViewItem>
+                    </ListView.Items>
+                </ListView>
+                <Button x:Name="MyButton" HorizontalAlignment="Center">Submit</Button>
+            </StackPanel>
         </NavigationView>
     </Grid>
 </Window>

@@ -33,6 +33,7 @@ namespace AppSDKIssues
         public App()
         {
             this.InitializeComponent();
+            this.RequestedTheme = ApplicationTheme.Light;
         }
 
         /// <summary>

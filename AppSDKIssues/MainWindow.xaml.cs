@@ -36,7 +36,12 @@ namespace AppSDKIssues
             this.InitializeComponent();
 
             ExtendsContentIntoTitleBar = true;
-            SetTitleBar(AppTitleBar);
+
+            //SetTitleBar(AppTitleBar);
+          
+            //myListView.ItemContainerStyle = (Style)App.Current.Resources["myListViewItemStyle"];
+            //myListView.ItemContainerStyle = (Style)App.Current.Resources["NewListViewItemStyle"];
+           
         }
 
         private AppWindow GetAppWindowForCurrentWindow()
@@ -45,16 +50,6 @@ namespace AppSDKIssues
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(wndId);
         }
-        private void detailsGridSplitter_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            var cursor = detailsGridSplitter.GetType().GetProperty("ProtectedCursor", BindingFlags.NonPublic | BindingFlags.Instance);
-            cursor.SetValue(detailsGridSplitter,InputSystemCursor.Create(Microsoft.UI.Input.InputSystemCursorShape.SizeNorthSouth));
-        }
-
-        private void slideOutGridSplitter_PointerEntered(object sender, PointerRoutedEventArgs e)
-        {
-            var cursor = slideOutGridSplitter.GetType().GetProperty("ProtectedCursor", BindingFlags.NonPublic | BindingFlags.Instance);
-            cursor.SetValue(slideOutGridSplitter, InputSystemCursor.Create(Microsoft.UI.Input.InputSystemCursorShape.SizeWestEast));
-        }
+       
     }
 }
