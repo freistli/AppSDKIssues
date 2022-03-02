@@ -34,7 +34,7 @@ namespace AppSDKIssues
         {
             this.InitializeComponent();
 
-            this.RequestedTheme = ApplicationTheme.Light;
+            this.RequestedTheme = ApplicationTheme.Dark;
         }
 
         /// <summary>

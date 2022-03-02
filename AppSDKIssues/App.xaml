@@ -11,6 +11,7 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!--ResourceDictionary Source="../Resources/Styles.xaml"/-->
                 <!-- Other merged dictionaries here -->
+                
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
             <SolidColorBrush x:Key="WindowCaptionBackground">Blue</SolidColorBrush>
@@ -25,34 +26,21 @@
             <SolidColorBrush x:Key="MyBrushLight">Purple</SolidColorBrush>
             <SolidColorBrush x:Key="MyBrushHighContrast">Blue</SolidColorBrush>
 
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{ThemeResource MyBrush}"></Setter>
+            </Style>
+
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Default01">
-                    <!--AccentColor overrides - Shades of Blue--> 
-                    <Color x:Key="SystemAccentColorLight3">#FF90CAF9</Color>
-                    <Color x:Key="SystemAccentColorLight2">Yellow</Color>
-                        <Color x:Key="SystemAccentColorLight1">#FF42A5F5</Color>
-                        <Color x:Key="SystemAccentColor">#FF2196F3</Color>
-                    <Color x:Key="SystemAccentColorDark1">Red</Color>
-                        <Color x:Key="SystemAccentColorDark2">#FF1976D2</Color>
-                        <Color x:Key="SystemAccentColorDark3">#FF1565C0</Color>
-
-                        <Style TargetType="ListViewItem" x:Key="myListViewItemStyle" BasedOn="{StaticResource DefaultListViewItemStyle}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListViewItem">
-                                    <ListViewItemPresenter ContentTransitions="{TemplateBinding ContentTransitions}"
-                        SelectedBackground="LightBlue" 
-                        SelectedPointerOverBackground="LightBlue"
-                        PressedBackground="LightBlue"
-                        >
-                      </ListViewItemPresenter>
-                       </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ResourceDictionary> 
-            </ResourceDictionary.ThemeDictionaries>
-
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="MyBrush">Blue</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="MyBrush">Yellow</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="MyBrush">Red</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries> 
         </ResourceDictionary>
     </Application.Resources>
 </Application>
