@@ -31,27 +31,9 @@
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False">
             <StackPanel Orientation="Vertical">
-                <TextBox x:Name="MyInput"></TextBox>
-                <CheckBox x:Name="MyCheckOne">Check One</CheckBox>
-                <CheckBox x:Name="MyCheckTwo">Check Two</CheckBox>
-                <Slider x:Name="MySlider" Maximum="100"></Slider>
-                <TextBlock x:Name="MyResult" Text="{x:Bind MySlider.Value, Mode=TwoWay}"></TextBlock>
-                <RadioButton x:Name="MyRadioOne">Radio One</RadioButton>
-                <RadioButton x:Name="MyRadioTwo">Radio Two</RadioButton>
-                <ListView x:Name="myListView">
-                   
-                    <ListView.Items>
-                        <ListViewItem>One</ListViewItem>
-                        <ListViewItem>Two</ListViewItem>
-                        <ListViewItem>Three</ListViewItem>
-                        <ListViewItem>Four</ListViewItem>
-                    </ListView.Items>
-                </ListView>
-                <Button x:Name="MyButton" HorizontalAlignment="Center">
-                   
-                    Submit</Button>
-
-                <Button HorizontalAlignment="Center">Test</Button>
+              
+                <local:DataGridPageControl HorizontalAlignment="Stretch" Height="600"></local:DataGridPageControl>
+                
             </StackPanel>
         </NavigationView>
     </Grid>
