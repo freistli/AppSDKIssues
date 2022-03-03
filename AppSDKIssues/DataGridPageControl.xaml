@@ -64,6 +64,9 @@
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
+            <AppBarButton x:Name="printButton" Icon="Print" Label="Print DataGrid" Click="printButton_Click">
+                
+            </AppBarButton>
         </StackPanel>
         <controls:DataGrid
       Grid.Row="1"
