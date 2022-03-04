@@ -39,7 +39,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="12">
+        <StackPanel Orientation="Horizontal" Margin="12" x:Name="StackMenu">
             <TextBlock Text="DataGrid Sample : Mountains" VerticalAlignment="Center" Margin="5,0" Style="{ThemeResource SubtitleTextBlockStyle}"/>
             <AppBarButton Icon="Filter" Label="Filter by">
                 <AppBarButton.Flyout>
@@ -68,11 +68,12 @@
 
             </AppBarButton>
         </StackPanel>
-        <Grid x:Name="PrintGrid" Grid.Row="1" Height="800" HorizontalAlignment="Stretch">
+        <ScrollViewer Grid.Row="1" Height="800" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch">
         <controls:DataGrid     
+            Background="White"
         x:Name="dataGrid"
         Margin="12"
-        Height="800" HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
         HorizontalScrollBarVisibility="Visible"
         VerticalScrollBarVisibility="Visible"
         LoadingRowGroup="DataGrid_LoadingRowGroup"
@@ -99,6 +100,7 @@
                 </controls:DataGridTemplateColumn>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        </Grid>
+        </ScrollViewer>
     </Grid>
+     
 </Page>

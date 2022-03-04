@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Printing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -220,15 +221,36 @@ namespace AppSDKIssues
 
             }
         }
+
+        private async Task PrintHtmltoPDF(string htmlFile)
+        {
+            var url = htmlFile;
+            var edgePath = @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe";
+            var output = Path.Combine(@"c:\temp\printout.pdf");
+            using (var p = new Process())
+            {
+                p.StartInfo.FileName = edgePath;
+                p.StartInfo.Arguments = $"--headless --disable-gpu --print-to-pdf={output} {url}";
+                p.Start();
+                p.WaitForExit();
+            }
+
+            ContentDialog dialog = new ContentDialog
+            {
+                Title = "Print to PDF",
+                Content = @"Print to c:\temp\printout.pdf",
+                PrimaryButtonText = "OK"
+            };
+            dialog.XamlRoot = dataGrid.XamlRoot;
+            await dialog.ShowAsync();
+        }
         private async void printButton_Click(object sender, RoutedEventArgs e)
         {
-            PrintGrid.Measure(new Size(PrintGrid.ActualWidth, PrintGrid.ActualHeight));
-            PrintGrid.UpdateLayout();
-
+          
             var renderBitmap = new RenderTargetBitmap();          
-            await renderBitmap.RenderAsync(PrintGrid);
+            await renderBitmap.RenderAsync(dataGrid);
             var buffer = await renderBitmap.GetPixelsAsync();
-            using var originalSoftwareBitmap = SoftwareBitmap.CreateCopyFromBuffer(buffer, BitmapPixelFormat.Bgra8, renderBitmap.PixelWidth, renderBitmap.PixelHeight, BitmapAlphaMode.Ignore);
+            using var originalSoftwareBitmap = SoftwareBitmap.CreateCopyFromBuffer(buffer, BitmapPixelFormat.Bgra8, renderBitmap.PixelWidth, renderBitmap.PixelHeight, BitmapAlphaMode.Premultiplied);
              
             StorageFolder sf = KnownFolders.PicturesLibrary;
             StorageFolder tn = await sf.CreateFolderAsync("DataGridPage", CreationCollisionOption.OpenIfExists);
@@ -238,12 +260,13 @@ namespace AppSDKIssues
 
             await SaveSoftwareBitmapToFile(originalSoftwareBitmap, outputFile);
 
-            string HTMLString = $"<img src=\"{outputFileName}\" width=\"100%\"></img>";
+            string HTMLString = $"<img src=\"{outputFileName}\" width=\"100%\" heigth=\"100%\"></img>";
             StorageFile printHtm = await tn.CreateFileAsync("print.htm", Windows.Storage.CreationCollisionOption.ReplaceExisting);
             await Windows.Storage.FileIO.WriteTextAsync(printHtm, HTMLString);
 
-            System.Diagnostics.Process.Start("rundll32.exe", $"C:\\windows\\system32\\mshtml.dll, PrintHTML \"{printHtm.Path}\" \"Microsoft Print to PDF\"");
+            //System.Diagnostics.Process.Start("rundll32.exe", $"C:\\windows\\system32\\mshtml.dll, PrintHTML \"{printHtm.Path}\" \"Microsoft Print to PDF\"");
 
+            PrintHtmltoPDF(printHtm.Path);
 
         }
 
