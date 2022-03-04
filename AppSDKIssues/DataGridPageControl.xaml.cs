@@ -264,9 +264,7 @@ namespace AppSDKIssues
             StorageFile printHtm = await tn.CreateFileAsync("print.htm", Windows.Storage.CreationCollisionOption.ReplaceExisting);
             await Windows.Storage.FileIO.WriteTextAsync(printHtm, HTMLString);
 
-            //System.Diagnostics.Process.Start("rundll32.exe", $"C:\\windows\\system32\\mshtml.dll, PrintHTML \"{printHtm.Path}\" \"Microsoft Print to PDF\"");
-
-            PrintHtmltoPDF(printHtm.Path);
+            await PrintHtmltoPDF(printHtm.Path);
 
         }
 
