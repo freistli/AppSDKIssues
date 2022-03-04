@@ -32,8 +32,8 @@
                         IsSettingsVisible="False">
             <StackPanel Orientation="Vertical">
               
-                <local:DataGridPageControl HorizontalAlignment="Stretch" Height="600"></local:DataGridPageControl>
-                
+                <local:DataGridPageControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></local:DataGridPageControl>
+         
             </StackPanel>
         </NavigationView>
     </Grid>

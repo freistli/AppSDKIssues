@@ -12,7 +12,9 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="ContinuationPage.xaml" />
     <None Remove="DataGridPageControl.xaml" />
+    <None Remove="PageToPrint.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +47,16 @@
     <Content Update="Assets\mtns.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="PageToPrint.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ContinuationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="DataGridPageControl.xaml">

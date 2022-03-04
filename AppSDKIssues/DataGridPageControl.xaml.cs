@@ -2,6 +2,8 @@
 using CommunityToolkit.WinUI.UI;
 using CommunityToolkit.WinUI.UI.Controls;
 using Microsoft.Graphics.Canvas;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -19,7 +21,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
+using Windows.Storage.Streams;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,12 +43,24 @@ namespace AppSDKIssues
         private MenuFlyoutItem heightHighItem;
         private DataGridDataSource viewModel = new DataGridDataSource();
 
+        private AppWindow GetAppWindowForCurrentWindow()
+        {
+            IntPtr hWnd = WindowNative.GetWindowHandle(this);
+            WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
+            return AppWindow.GetFromWindowId(wndId);
+        }
         public DataGridPageControl()
         {
             this.InitializeComponent();
 
             this.Loaded += DataGridPageControl_Loaded;
+            /*
+            printHelper = new PrintHelper(this);
+            printHelper.RegisterForPrinting();
 
+            // Initialize print content for this scenario
+            printHelper.PreparePrintContent(new PageToPrint());
+            */
         }
 
         private async void DataGridPageControl_Loaded(object sender, RoutedEventArgs e)
@@ -161,12 +179,74 @@ namespace AppSDKIssues
         {
 
         }
+        private PrintHelper printHelper;
 
+        private async Task SaveSoftwareBitmapToFile(SoftwareBitmap softwareBitmap, StorageFile outputFile)
+        {
+            using (IRandomAccessStream stream = await outputFile.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                // Create an encoder with the desired format
+                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, stream);
+
+                // Set the software bitmap
+                encoder.SetSoftwareBitmap(softwareBitmap);
+
+                encoder.IsThumbnailGenerated = true;
+
+                try
+                {
+                    await encoder.FlushAsync();
+                }
+                catch (Exception err)
+                {
+                    const int WINCODEC_ERR_UNSUPPORTEDOPERATION = unchecked((int)0x88982F81);
+                    switch (err.HResult)
+                    {
+                        case WINCODEC_ERR_UNSUPPORTEDOPERATION:
+                            // If the encoder does not support writing a thumbnail, then try again
+                            // but disable thumbnail generation.
+                            encoder.IsThumbnailGenerated = false;
+                            break;
+                        default:
+                            throw;
+                    }
+                }
+
+                if (encoder.IsThumbnailGenerated == false)
+                {
+                    await encoder.FlushAsync();
+                }
+
+
+            }
+        }
         private async void printButton_Click(object sender, RoutedEventArgs e)
         {
-            var renderBitmap = new RenderTargetBitmap();
-            await renderBitmap.RenderAsync(dataGrid);
+            PrintGrid.Measure(new Size(PrintGrid.ActualWidth, PrintGrid.ActualHeight));
+            PrintGrid.UpdateLayout();
+
+            var renderBitmap = new RenderTargetBitmap();          
+            await renderBitmap.RenderAsync(PrintGrid);
+            var buffer = await renderBitmap.GetPixelsAsync();
+            using var originalSoftwareBitmap = SoftwareBitmap.CreateCopyFromBuffer(buffer, BitmapPixelFormat.Bgra8, renderBitmap.PixelWidth, renderBitmap.PixelHeight, BitmapAlphaMode.Ignore);
+             
+            StorageFolder sf = KnownFolders.PicturesLibrary;
+            StorageFolder tn = await sf.CreateFolderAsync("DataGridPage", CreationCollisionOption.OpenIfExists);
+            string outputFileName = $"{DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_fff")}.jpg";
+
+            StorageFile outputFile = await tn.CreateFileAsync(outputFileName);
+
+            await SaveSoftwareBitmapToFile(originalSoftwareBitmap, outputFile);
+
+            string HTMLString = $"<img src=\"{outputFileName}\" width=\"100%\"></img>";
+            StorageFile printHtm = await tn.CreateFileAsync("print.htm", Windows.Storage.CreationCollisionOption.ReplaceExisting);
+            await Windows.Storage.FileIO.WriteTextAsync(printHtm, HTMLString);
+
+            System.Diagnostics.Process.Start("rundll32.exe", $"C:\\windows\\system32\\mshtml.dll, PrintHTML \"{printHtm.Path}\" \"Microsoft Print to PDF\"");
+
+
         }
- 
+
+
     }
 }
