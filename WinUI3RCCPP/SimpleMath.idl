@@ -1,0 +1,12 @@
+namespace WinUI3RCCPP
+{
+    [default_interface]
+    runtimeclass SimpleMath
+    {
+        SimpleMath();
+        Double add(Double firstNumber, Double secondNumber);
+        Double subtract(Double firstNumber, Double secondNumber);
+        Double multiply(Double firstNumber, Double secondNumber);
+        Double divide(Double firstNumber, Double secondNumber);
+    }
+}
