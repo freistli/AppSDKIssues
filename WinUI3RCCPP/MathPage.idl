@@ -1,0 +1,8 @@
+namespace WinUI3RCCPP
+{
+    runtimeclass MathPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        MathPage();
+        Int32 MyProperty;
+    }
+}

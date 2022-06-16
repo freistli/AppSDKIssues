@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
-    
+    xmlns:math ="using:WinUI3RCCPP"
     mc:Ignorable="d">
 
     <Grid>
@@ -31,8 +31,9 @@
                         IsBackButtonVisible="Collapsed"
                         IsSettingsVisible="False">
             <StackPanel Orientation="Vertical">
-              
-                <local:DataGridPageControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></local:DataGridPageControl>
+                <Button x:Name="SimpleMathButton" Click="SimpleMathButton_Click">Simple Math</Button>
+                <math:MathPage Width="800" HorizontalAlignment="left"></math:MathPage>
+                <local:DataGridPageControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="DataGridElement"></local:DataGridPageControl>
          
             </StackPanel>
         </NavigationView>

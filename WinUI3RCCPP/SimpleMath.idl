@@ -1,6 +1,6 @@
 namespace WinUI3RCCPP
 {
-    [default_interface]
+    
     runtimeclass SimpleMath
     {
         SimpleMath();

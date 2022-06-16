@@ -48,6 +48,18 @@ namespace AppSDKIssues
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(wndId);
         }
-       
+
+        private async void SimpleMathButton_Click(object sender, RoutedEventArgs e)
+        {
+            WinUI3RCCPP.SimpleMath math = new WinUI3RCCPP.SimpleMath();
+            ContentDialog LoadDialog = new ContentDialog()
+            {
+                Title = "Simple Math",
+                Content = $"5.5 + 5.6 = {math.add(5.5,5.6)}",
+                CloseButtonText = "Ok"
+            };
+            LoadDialog.XamlRoot = DataGridElement.XamlRoot;
+            await LoadDialog.ShowAsync();
+        }
     }
 }
