@@ -58,7 +58,7 @@ namespace AppSDKIssues
                 Content = $"5.5 + 5.6 = {math.add(5.5,5.6)}",
                 CloseButtonText = "Ok"
             };
-            LoadDialog.XamlRoot = DataGridElement.XamlRoot;
+            LoadDialog.XamlRoot = mathPage.XamlRoot;
             await LoadDialog.ShowAsync();
         }
     }
