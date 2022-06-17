@@ -45,4 +45,15 @@
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
+
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>WinUI3RCCPP.dll</Path>
+        <ActivatableClass ActivatableClassId="WinUI3RCCPP.MainPage" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WinUI3RCCPP.SimpleMath" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+  
 </Package>
