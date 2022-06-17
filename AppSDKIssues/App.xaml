@@ -2,14 +2,46 @@
     x:Class="AppSDKIssues.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:BelowWindows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract, 7)"
     xmlns:local="using:AppSDKIssues">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <!--ResourceDictionary Source="../Resources/Styles.xaml"/-->
                 <!-- Other merged dictionaries here -->
+                
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <SolidColorBrush x:Key="WindowCaptionBackground">Blue</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled">LightBlue</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionForeground">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionForegroundDisabled">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionButtonStrokePointerOver">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionButtonStrokePressed">White</SolidColorBrush>
+            <SolidColorBrush x:Key="WindowCaptionButtonStroke">White</SolidColorBrush>
+
+            <SolidColorBrush x:Key="MyBrushDark">Yellow</SolidColorBrush>
+            <SolidColorBrush x:Key="MyBrushLight">Purple</SolidColorBrush>
+            <SolidColorBrush x:Key="MyBrushHighContrast">Blue</SolidColorBrush>
+
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{ThemeResource MyBrush}"></Setter>
+            </Style>
+
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="MyBrush">Blue</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="MyBrush">Yellow</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="MyBrush">Red</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries> 
         </ResourceDictionary>
     </Application.Resources>
+    
 </Application>

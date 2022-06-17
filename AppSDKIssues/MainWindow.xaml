@@ -5,9 +5,37 @@
     xmlns:local="using:AppSDKIssues"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:math ="using:WinUI3RCCPP"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar" Margin="0,0,120,0">
+            <Image Source="Assets/StoreLogo.png"
+                   HorizontalAlignment="Left" 
+                   Width="16" Height="16" 
+                   Margin="8,0"/>
+            <TextBlock x:Name="AppTitleTextBlock" Text="App title"
+                       TextWrapping="NoWrap"
+                       Style="{StaticResource CaptionTextBlockStyle}" 
+                       VerticalAlignment="Center"
+                       Margin="28,0,0,0"/>
+        </Grid>
+
+        <NavigationView Grid.Row="1"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False">
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="SimpleMathButton" Click="SimpleMathButton_Click">Simple Math</Button>
+                <math:MathPage Width="800" HorizontalAlignment="left"></math:MathPage>
+                <local:DataGridPageControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="DataGridElement"></local:DataGridPageControl>
+         
+            </StackPanel>
+        </NavigationView>
+    </Grid>
 </Window>
