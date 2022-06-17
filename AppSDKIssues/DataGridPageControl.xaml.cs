@@ -67,7 +67,7 @@ namespace AppSDKIssues
         private async void DataGridPageControl_Loaded(object sender, RoutedEventArgs e)
         {
 
-            dataGrid.ItemsSource = await viewModel.GetDataAsync();
+            //dataGrid.ItemsSource = await viewModel.GetDataAsync();
         }
 
         private void DataGrid_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
