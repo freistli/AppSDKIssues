@@ -4,7 +4,6 @@
     <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>AppSDKIssues</RootNamespace>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64</Platforms>
     <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
@@ -17,6 +16,8 @@
 	<PropertyGroup>
 		<CsWinRTIncludes>WinUI3RCCPP</CsWinRTIncludes>
 		<CsWinRTGeneratedFilesDir>$(OutDir)</CsWinRTGeneratedFilesDir>
+		<ApplicationIcon>image\Icon1.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
   <ItemGroup>
     <None Remove="ContinuationPage.xaml" />
@@ -32,6 +33,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="image\Icon1.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +61,11 @@
     <Content Update="Assets\mtns.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="image\Icon1.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Update="PageToPrint.xaml">

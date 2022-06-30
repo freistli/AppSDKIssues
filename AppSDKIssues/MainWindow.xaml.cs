@@ -132,8 +132,11 @@ namespace AppSDKIssues
             ExtendsContentIntoTitleBar = true;
 
             SetTitleBar(AppTitleBar);
-          
-           
+
+            //IntPtr windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            //WindowId windowId = Win32Interop.GetWindowIdFromWindow(windowHandle);
+            //var appWindow = AppWindow.GetFromWindowId(windowId);
+            //appWindow.SetIcon("image/Icon1.ico");
         }
 
         private AppWindow GetAppWindowForCurrentWindow()
@@ -141,6 +144,7 @@ namespace AppSDKIssues
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(wndId);
+             
         }
 
         private async void SimpleMathButton_Click(object sender, RoutedEventArgs e)
@@ -185,7 +189,7 @@ namespace AppSDKIssues
             string availableMemory = "";
             foreach (ManagementObject managementObject in managementObjectCollection)
             {
-                 availableMemory = $"Free Physical Memory: {String.Format("{0:0.##}", Convert.ToDouble(managementObject["FreePhysicalMemory"]) /1024)} MB"; 
+                 availableMemory = $"{String.Format("{0:0.##}", Convert.ToDouble(managementObject["FreePhysicalMemory"]) /1024)} MB"; 
             }
 
             //Cannot use it in unpackaged app.
