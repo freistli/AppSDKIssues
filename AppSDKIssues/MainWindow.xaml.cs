@@ -180,6 +180,7 @@ namespace AppSDKIssues
             var DeviceManufacturer = deviceInfo.SystemManufacturer;
             var DeviceModel = deviceInfo.SystemProductName;
 
+            
             //Cannot use it in unpackaged app.
             //var AvailableMemory = (float)MemoryManager.AppMemoryUsageLimit / 1024 / 1024;
 
@@ -189,8 +190,12 @@ namespace AppSDKIssues
             string availableMemory = "";
             foreach (ManagementObject managementObject in managementObjectCollection)
             {
-                 availableMemory = $"{String.Format("{0:0.##}", Convert.ToDouble(managementObject["FreePhysicalMemory"]) /1024)} MB"; 
+                availableMemory = $"{String.Format("{0:0.##}", Convert.ToDouble(managementObject["FreePhysicalMemory"]) /1024)} MB";
+                managementObject.Dispose();
             }
+            
+            managementObjectSearcher.Dispose();
+            managementObjectCollection.Dispose();
 
             //Cannot use it in unpackaged app.
             //var OperatingSystemArchitecture = Package.Current.Id.Architecture;
@@ -198,7 +203,7 @@ namespace AppSDKIssues
             var si = new SYSTEM_INFO();
             GetNativeSystemInfo(ref si);
             var ProcessorArch = GetArchitecture(ref si);
-
+           
             ContentDialog LoadDialog = new ContentDialog()
             {
                 Title = "Info",
