@@ -33,7 +33,7 @@
             <StackPanel Orientation="Vertical">
                 <Button x:Name="SimpleMathButton" Click="SimpleMathButton_Click">Simple Math</Button>
                 <math:MathPage Width="800" HorizontalAlignment="left" x:Name="mathPage"></math:MathPage>
-         
+                <Button x:Name="systemInfo" Click="systemInfo_Click">System Info</Button>
             </StackPanel>
         </NavigationView>
     </Grid>
